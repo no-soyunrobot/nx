@@ -23,9 +23,9 @@ import {
   ANALYSE_SOURCES_TOKEN,
   ANALYSE_SOURCES_TRANSFORM,
 } from 'ng-packagr/lib/ng-package/entry-point/analyse-sources.di';
-import { NX_INIT_TS_CONFIG_TRANSFORM } from '@nrwl/angular/src/builders/lib-build/nxng-builder/init-tsconfig';
-import { nxPackageTransformFactory } from '@nrwl/angular/src/builders/lib-build/nxng-builder/package';
-import { NX_ENTRY_POINT_TRANSFORM_TOKEN } from '@nrwl/angular/src/builders/lib-build/nxng-builder/entry-point.di';
+import { NX_INIT_TS_CONFIG_TRANSFORM } from '@nrwl/angular/src/builders/lib-build/ng-packagr-adjustments/init-tsconfig';
+import { nxPackageTransformFactory } from '@nrwl/angular/src/builders/lib-build/ng-packagr-adjustments/package';
+import { NX_ENTRY_POINT_TRANSFORM_TOKEN } from '@nrwl/angular/src/builders/lib-build/ng-packagr-adjustments/entry-point.di';
 
 export const PACKAGE_TRANSFORM_TOKEN = new InjectionToken<Transform>(
   `nx.v1.packageTransform`

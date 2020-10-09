@@ -19,10 +19,10 @@ import { createProjectGraph } from '@nrwl/workspace/src/core/project-graph';
 import {
   NX_PACKAGE_PROVIDERS,
   NX_PACKAGE_TRANSFORM,
-} from './nxng-builder/package.di';
+} from './ng-packagr-adjustments/package.di';
 import { NgPackagr } from 'ng-packagr';
 import { ENTRY_POINT_PROVIDERS } from 'ng-packagr/lib/ng-package/entry-point/entry-point.di';
-import { NX_ENTRY_POINT_PROVIDERS } from '@nrwl/angular/src/builders/lib-build/nxng-builder/entry-point.di';
+import { NX_ENTRY_POINT_PROVIDERS } from '@nrwl/angular/src/builders/lib-build/ng-packagr-adjustments/entry-point.di';
 
 export interface BuildAngularLibraryBuilderOptions {
   /**
