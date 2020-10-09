@@ -1,4 +1,4 @@
-# nx-lib-build
+# lib-build
 
 Build an Angular library
 
