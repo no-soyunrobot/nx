@@ -1,28 +1,8 @@
-import { InjectionToken, Provider } from 'injection-js';
 import * as fs from 'fs-extra';
-import {
-  DEFAULT_OPTIONS_PROVIDER,
-  NgPackagrOptions,
-  OPTIONS_TOKEN,
-} from 'ng-packagr/lib/ng-package/options.di';
+import { NgPackagrOptions } from 'ng-packagr/lib/ng-package/options.di';
 import { Transform } from 'ng-packagr/lib/graph/transform';
-import { from, Observable, pipe, of as observableOf, of } from 'rxjs';
+import { from, Observable, of as observableOf, pipe } from 'rxjs';
 import { BuildGraph } from 'ng-packagr/lib/graph/build-graph';
-import {
-  provideTransform,
-  TransformProvider,
-} from 'ng-packagr/lib/graph/transform.di';
-import { PROJECT_TOKEN } from 'ng-packagr/lib/project.di';
-import {
-  DEFAULT_TS_CONFIG_PROVIDER,
-  INIT_TS_CONFIG_TOKEN,
-  INIT_TS_CONFIG_TRANSFORM,
-} from 'ng-packagr/lib/ng-package/entry-point/init-tsconfig.di';
-import {
-  ANALYSE_SOURCES_TOKEN,
-  ANALYSE_SOURCES_TRANSFORM,
-} from 'ng-packagr/lib/ng-package/entry-point/analyse-sources.di';
-import { ENTRY_POINT_TRANSFORM_TOKEN } from 'ng-packagr/lib/ng-package/entry-point/entry-point.di';
 import {
   concatMap,
   defaultIfEmpty,
@@ -33,8 +13,6 @@ import {
   takeLast,
   tap,
 } from 'rxjs/operators';
-import { packageTransformFactory } from 'ng-packagr/lib/ng-package/package.transform';
-import { NX_ENTRY_POINT_TRANSFORM_TOKEN } from './entry-point';
 import * as log from 'ng-packagr/lib/utils/log';
 import * as path from 'path';
 import { discoverPackages } from './discover-packages';
@@ -42,7 +20,6 @@ import { rimraf } from 'ng-packagr/lib/utils/rimraf';
 import {
   byEntryPoint,
   EntryPointNode,
-  GlobCache,
   isEntryPoint,
   ngUrl,
   PackageNode,
@@ -50,7 +27,6 @@ import {
 import { DepthBuilder } from 'ng-packagr/lib/graph/depth';
 import { flatten } from 'ng-packagr/lib/utils/array';
 import { STATE_IN_PROGESS } from 'ng-packagr/lib/graph/node';
-import { NX_INIT_TS_CONFIG_TRANSFORM } from './init-tsconfig';
 
 export const nxPackageTransformFactory = (
   project: string,

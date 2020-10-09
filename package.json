@@ -256,5 +256,8 @@
       "pre-push": "yarn check-commit && yarn documentation && pretty-quick --check"
     }
   },
-  "dependencies": {}
+  "dependencies": {},
+  "resolutions": {
+    "ng-packagr/rxjs": "6.6.2"
+  }
 }

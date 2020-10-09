@@ -23,6 +23,19 @@ interface UserPackage {
   basePath: string;
 }
 
+function formatSchemaValidationErrors(errors: ajv.ErrorObject[]): string {
+  return errors
+    .map((err) => {
+      let message = `Data path ${JSON.stringify(err.dataPath)} ${err.message}`;
+      if (err.keyword === 'additionalProperties') {
+        message += ` (${(err.params as any).additionalProperty})`;
+      }
+
+      return message + '.';
+    })
+    .join('\n');
+}
+
 export async function discoverPackages(project: string) {
   project = path.isAbsolute(project) ? project : path.resolve(project);
 
@@ -110,7 +123,7 @@ async function resolveUserPackage(
     const isValid = validate(ngPackageJson);
     if (!isValid) {
       throw new Error(
-        `Configuration doesn\'t match the required schema.\n${formatSchemaValidationErrors(
+        `Configuration doesn't match the required schema.\n${formatSchemaValidationErrors(
           validate.errors
         )}`
       );
