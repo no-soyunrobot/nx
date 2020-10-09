@@ -1,6 +1,7 @@
 /**
- * Adapted function from original ng-packagr. This one excludes
- * the search for secondary entry points since that's not needed
+ * Adapted from original ng-packagr.
+ *
+ * Excludes the search for secondary entry points since that's not needed
  * for incremental compilation
  */
 

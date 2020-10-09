@@ -1,5 +1,7 @@
 /**
- * Adapted from original ng-packagr to exclude the UMD bundling and minification
+ * Adapted from original ng-packagr
+ *
+ * Exclude the UMD bundling and minification
  * which is not needed for incremental compilation
  */
 

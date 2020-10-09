@@ -1,3 +1,9 @@
+/**
+ * Updated from original ng-packagr
+ *
+ * this is to wire in a custom discoverPackages function that
+ * does not take secondary entry points into account
+ */
 import * as fs from 'fs-extra';
 import { NgPackagrOptions } from 'ng-packagr/lib/ng-package/options.di';
 import { Transform } from 'ng-packagr/lib/graph/transform';
@@ -42,19 +48,12 @@ export const nxPackageTransformFactory = (
     analyseSourcesTransform,
     entryPointTransform
   );
-  // let discoverPackagesStart;
-  // let discoverPackagesTime;
-  // let addEntryPointsStart;
-  // let addEntryPoints;
 
   return source$.pipe(
-    tap(() => {
-      console.log('👋😎');
-    }),
     tap(() => log.info(`Building Angular Package`)),
     // Discover packages and entry points
-    // tap(() => (discoverPackagesStart = process.hrtime())),
     switchMap((graph) => {
+      // custom Nx discoverPackages
       const pkg = discoverPackages(project);
 
       return from(pkg).pipe(
@@ -66,10 +65,6 @@ export const nxPackageTransformFactory = (
         })
       );
     }),
-    // tap(() => {
-    //   discoverPackagesTime = process.hrtime(discoverPackagesStart);
-    //   console.log(`Discover packages: ${discoverPackagesTime}`);
-    // }),
     // Clean the primary dest folder (should clean all secondary sub-directory, as well)
     switchMap((graph: BuildGraph) => {
       const { dest, deleteDestPath } = graph.get(pkgUri).data;
@@ -79,8 +74,6 @@ export const nxPackageTransformFactory = (
     }),
     // Add entry points to graph
     map((graph) => {
-      // addEntryPointsStart = process.hrtime();
-
       const ngPkg = graph.get(pkgUri) as PackageNode;
       const entryPoints = [ngPkg.data.primary, ...ngPkg.data.secondaries].map(
         (entryPoint) => {
@@ -103,17 +96,6 @@ export const nxPackageTransformFactory = (
     initTsConfigTransform,
     // perform build
     buildTransform
-    // packageTransformFactory(
-    //   project,
-    //   {
-    //     ...options,
-    //     /* doesn't make sense to have watch support */
-    //     watch: false,
-    //   },
-    //   initTsConfigTransform,
-    //   analyseSourcesTransform,
-    //   entryPointTransform
-    // )
   );
 };
 

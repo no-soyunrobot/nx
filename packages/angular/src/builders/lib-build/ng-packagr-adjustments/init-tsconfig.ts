@@ -1,7 +1,8 @@
 /**
- * Adapted from the original ngPackagr source. This initialization however
- * does not print a warning when Ivy is disabled, since the incremental build
- * packages are not intended for distribution
+ * Adapted from the original ngPackagr source.
+ *
+ * This initialization however does not print a warning when Ivy is disabled,
+ * since the incremental build packages are not intended for distribution
  */
 
 import { msg } from 'ng-packagr/lib/utils/log';
@@ -34,11 +35,9 @@ export const initTsConfigTransformFactory = (
         '******************************************************************************\n' +
         'It is not recommended to publish Ivy libraries to NPM repositories.\n' +
         'Read more here: https://v9.angular.io/guide/ivy#maintaining-library-compatibility\n' +
-        '🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥.\n' +
         '******************************************************************************';
 
       msg(ivyMsg);
-      // msg(chalk.yellow(ivyMsg));
     }
 
     return graph;

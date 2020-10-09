@@ -1,5 +1,6 @@
 /**
- * Adapted from the original ng-packagr src.
+ * Adapted from the original ng-packagr
+ *
  * Wires everything together and provides it to the DI, but exchanges the parts
  * we want to implement with Nx specific functions
  */
